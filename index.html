@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>Kushalpura Land Map</title>
+<meta name="description" content="Kushalpura khasra boundary on satellite map">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  html,body{margin:0;height:100%;background:#111;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+  #map{position:absolute;inset:0}
+  .card{position:absolute;z-index:1000;left:12px;right:12px;top:12px;max-width:380px;background:rgba(255,255,255,.96);
+        border-radius:12px;padding:12px 14px;box-shadow:0 4px 18px rgba(0,0,0,.35);color:#111}
+  .card h1{font-size:17px;margin:0 0 2px}
+  .card .sub{font-size:12px;color:#555;margin-bottom:8px}
+  .stats{display:flex;gap:14px;font-size:13px;margin-bottom:10px}
+  .stats b{display:block;font-size:16px}
+  .btns{display:flex;flex-wrap:wrap;gap:8px}
+  .btns a,.btns button{font:600 13px inherit;font-family:inherit;border:0;border-radius:8px;padding:9px 12px;cursor:pointer;text-decoration:none}
+  .p{background:#1a73e8;color:#fff}.s{background:#eef1f5;color:#111}
+  .legend{display:flex;align-items:center;gap:6px;font-size:12px;color:#333;margin-top:8px}
+  .sw{width:22px;height:4px;background:#ffff00;outline:1px solid #999}
+</style>
+</head>
+<body>
+<div id="map"></div>
+<div class="card">
+  <h1>KUSHALPURA – Khasra Boundary</h1>
+  <div class="sub">Shree Ram Group · from KUSHALPURA KML</div>
+  <div class="stats">
+    <div><b>≈ 11.55 acres</b>area</div>
+    <div><b>≈ 4.67 ha</b>46,750 m²</div>
+    <div><b>≈ 1.70 km</b>boundary</div>
+  </div>
+  <div class="btns">
+    <button class="s" id="fit">Show full area</button>
+    <a class="p" href="https://www.google.com/maps/search/?api=1&query=27.201592,75.954552" target="_blank" rel="noopener">Open in Google Maps</a>
+    <a class="s" href="https://earth.google.com/web/@27.201592,75.954552,350a,900d,35y,0h,0t,0r" target="_blank" rel="noopener">Google Earth</a>
+    <a class="s" href="kushalpura.kml" download="KUSHALPURA KML.kml">KML</a>
+  </div>
+  <div class="legend"><span class="sw"></span> Khasra outer line · areas are approximate</div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+var ring = [[27.20093897, 75.95402136], [27.20099032, 75.95419358], [27.20106074, 75.95441275], [27.20110512, 75.9545701], [27.20098834, 75.95455584], [27.20093582, 75.95454619], [27.20093295, 75.95450876], [27.20092205, 75.95447958], [27.2008761, 75.9543299], [27.20086661, 75.95429898], [27.20081497, 75.95414262], [27.20010389, 75.95409726], [27.20020948, 75.95425233], [27.20023776, 75.95429709], [27.20031086, 75.95441277], [27.20036988, 75.95449918], [27.20038305, 75.95453486], [27.20022079, 75.95452158], [27.20011376, 75.95450781], [27.19994852, 75.95449556], [27.19980726, 75.95447919], [27.19980837, 75.9542767], [27.19980899, 75.95416207], [27.19981175, 75.95400904], [27.19982729, 75.95314532], [27.19992975, 75.95306756], [27.20007553, 75.95296672], [27.20010835, 75.95300324], [27.20016616, 75.95306756], [27.20030199, 75.95322725], [27.20042956, 75.95337114], [27.20058234, 75.95354915], [27.20066382, 75.9536487], [27.20075357, 75.95363824], [27.20081652, 75.95363514], [27.20085734, 75.95374827], [27.2009128, 75.95393375], [27.20105754, 75.95387144], [27.20104009, 75.9538211], [27.20095729, 75.95355616], [27.20101208, 75.95361487], [27.20108409, 75.95370185], [27.2011255, 75.95371774], [27.20120123, 75.95372678], [27.20127223, 75.95373383], [27.20137151, 75.95374369], [27.20142214, 75.95374921], [27.20157579, 75.95376596], [27.20164961, 75.95377151], [27.20182266, 75.95378792], [27.20182862, 75.95378854], [27.20202324, 75.95379642], [27.2022221, 75.9538178], [27.20237857, 75.95383616], [27.20261731, 75.95385859], [27.20263053, 75.95386848], [27.20263883, 75.95404914], [27.20264499, 75.95420792], [27.20264031, 75.95430591], [27.2026169, 75.95451449], [27.20261046, 75.95470812], [27.20276249, 75.9547365], [27.20305056, 75.95479686], [27.20326863, 75.95484657], [27.20344751, 75.95488929], [27.20367049, 75.95495072], [27.20360025, 75.95511997], [27.20356231, 75.95519029], [27.2034302, 75.95519682], [27.20334749, 75.95550344], [27.20335475, 75.95571571], [27.20327669, 75.9557397], [27.20304221, 75.95584932], [27.20303449, 75.95612522], [27.2030165, 75.95643571], [27.20290384, 75.95641409], [27.20285391, 75.95640424], [27.20279221, 75.95639272], [27.20266504, 75.9563651], [27.20257297, 75.95633739], [27.20254976, 75.95633133], [27.20243024, 75.95629044], [27.20242984, 75.95611779], [27.20244296, 75.95579143], [27.20244584, 75.95573447], [27.20244732, 75.95570954], [27.20245466, 75.95563815], [27.20231126, 75.95564155], [27.20208946, 75.95565158], [27.2020266, 75.95565438], [27.20201882, 75.95540384], [27.2020036, 75.95516933], [27.20200403, 75.95499135], [27.20200423, 75.95491098], [27.20200948, 75.95480657], [27.20200566, 75.9548062], [27.20183475, 75.95478937], [27.20166189, 75.95477477], [27.20165043, 75.9547738], [27.20155835, 75.95476711], [27.20156388, 75.95471927], [27.20156954, 75.95468476], [27.20132046, 75.95463199], [27.20131727, 75.95462118], [27.20127053, 75.95448904], [27.20126695, 75.95447894], [27.20121339, 75.95433096], [27.20112775, 75.95407411], [27.20108735, 75.95395749], [27.20093897, 75.95402136]];
+var map = L.map('map', {zoomControl:true, attributionControl:true});
+var sat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {maxZoom:20, maxNativeZoom:19, attribution:'Imagery © Esri, Maxar, Earthstar Geographics'}).addTo(map);
+var labels = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {maxZoom:20, maxNativeZoom:19}).addTo(map);
+var streets = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom:20, maxNativeZoom:19, attribution:'© OpenStreetMap'});
+L.control.layers({'Satellite':sat,'Street map':streets},{'Place labels':labels},{position:'bottomright'}).addTo(map);
+var shape = L.polygon(ring, {color:'#ffff00', weight:4, fillColor:'#ffff00', fillOpacity:0.12}).addTo(map)
+  .bindPopup('<b>KUSHALPURA</b><br>Khasra outer line<br>≈ 11.55 acres (4.67 ha)');
+function fit(){ map.fitBounds(shape.getBounds(), {padding:[30,30], paddingTopLeft:[20, window.innerWidth<600?190:30]}); }
+fit(); document.getElementById('fit').onclick = fit;
+L.control.scale({imperial:false}).addTo(map);
+</script>
+</body>
+</html>
