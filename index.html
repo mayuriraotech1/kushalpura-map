@@ -20,6 +20,12 @@
   .p{background:#1a73e8;color:#fff}.s{background:#eef1f5;color:#111}
   .legend{display:flex;align-items:center;gap:6px;font-size:12px;color:#333;margin-top:8px}
   .sw{width:22px;height:4px;background:#ffff00;outline:1px solid #999}
+  .open{font-size:13px;font-weight:600;margin:2px 0 6px}
+  .big{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:8px}
+  .big a{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;font-weight:700;font-size:14px;
+         color:#fff;text-decoration:none;border-radius:10px;padding:12px 4px;min-height:44px}
+  .big a small{font-weight:400;font-size:11px;opacity:.9;margin-top:2px}
+  .ge{background:#1a73e8}.gm{background:#188038}.am{background:#111}
 </style>
 </head>
 <body>
@@ -32,12 +38,13 @@
     <div><b>≈ 4.67 ha</b>46,750 m²</div>
     <div><b>≈ 1.70 km</b>boundary</div>
   </div>
-  <div class="btns">
-    <button class="s" id="fit">Show full area</button>
-    <a class="p" href="https://www.google.com/maps/search/?api=1&query=27.201592,75.954552" target="_blank" rel="noopener">Open in Google Maps</a>
-    <a class="s" href="https://earth.google.com/earth/d/1HRhV3ZQYj9iFBGdwY-rXpH7IMrTDufpO?usp=sharing" target="_blank" rel="noopener">Google Earth</a>
-    <a class="s" href="kushalpura.kml" download="KUSHALPURA KML.kml">KML</a>
+  <div class="open">Open this location in:</div>
+  <div class="big">
+    <a class="ge" href="https://earth.google.com/earth/d/1HRhV3ZQYj9iFBGdwY-rXpH7IMrTDufpO?usp=sharing">Google Earth<small>with boundary</small></a>
+    <a class="gm" href="https://www.google.com/maps/search/?api=1&query=27.201592,75.954552">Google Maps<small>location pin</small></a>
+    <a class="am" href="https://maps.apple.com/?ll=27.201592,75.954552&q=KUSHALPURA&t=k&z=17">Apple Maps<small>location pin</small></a>
   </div>
+  <div class="btns"><button class="s" id="fit">Show full area</button><a class="s" href="kushalpura.kml" download="KUSHALPURA KML.kml">Download KML</a></div>
   <div class="legend"><span class="sw"></span> Khasra outer line · areas are approximate</div>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
